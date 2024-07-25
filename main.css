@@ -9,6 +9,7 @@ body {
     background: url('resources/wallpaper.webp') no-repeat center center fixed; /* Add background image */
     background-size: cover; /* Ensure it covers the entire viewport */
     background-color: #fff; /* Fallback color if image doesn't load */
+    position: relative; /* Set body position to relative to control child positioning */
 }
 
 .banner {
@@ -19,22 +20,26 @@ body {
     background-repeat: no-repeat;
     position: relative; /* To position the peepopride image */
     overflow: hidden; /* To hide the image once it moves out of the banner */
+    z-index: 2; /* Ensure the banner is above other content */
 }
 
 .content {
     display: flex;
-    align-items: flex-start; /* Align items at the start (top) of the content area */
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items at the start (top) of the content area */
     flex-grow: 1;
     text-align: center;
     padding-top: 5%; /* Adjust the padding to place the content in the top third */
     width: 100%; /* Ensure the content area takes full width */
     box-sizing: border-box; /* Include padding in the width calculation */
+    z-index: 1; /* Ensure content is below the banners */
 }
 
 .wordart {
     max-width: 50%; /* Resize the image to be smaller */
     height: auto;
+    cursor: pointer; /* Indicate that the image is clickable */
 }
 
 .peepopride {
@@ -42,6 +47,7 @@ body {
     left: -10%; /* Start slightly off-screen */
     height: 50px; /* Adjust as needed */
     animation: dash 3s linear infinite; /* Adjust the duration as needed */
+    z-index: 2; /* Ensure it appears above content but below banners */
 }
 
 @keyframes dash {
@@ -51,4 +57,18 @@ body {
     100% {
         left: 110%; /* End slightly off-screen */
     }
+}
+
+.monkecorner-container {
+    position: absolute; /* Position it within the body relative to the viewport */
+    bottom: 45px; /* Adjust to be just above the bottom banner */
+    left: 0; /* Attach to the left edge of the viewport */
+    z-index: 1; /* Ensure it is below the banners but above the background */
+    width: 150px; /* Adjust the size as needed */
+    height: auto;
+}
+
+.monkecorner {
+    width: 100%; /* Make sure the image fills the container */
+    height: auto;
 }
