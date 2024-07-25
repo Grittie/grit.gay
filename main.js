@@ -8,7 +8,7 @@ document.getElementById('wordart').addEventListener('click', () => {
 
     // Play the sound
     const audio = new Audio('resources/yipee.mp3');
-    audio.volume = 0.5;
+    audio.volume = 0.1;
     audio.play();
 });
 
