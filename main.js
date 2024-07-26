@@ -11,7 +11,6 @@ document.getElementById('wordart').addEventListener('click', () => {
 });
 
 const images = document.querySelectorAll('.floating-image');
-const container = document.querySelector('.floating-images-container');
 
 function getRandomSpeed() {
     return (Math.random() - 0.5) * 10;
@@ -34,20 +33,28 @@ function animate() {
         y += dy;
         rotation += rotationSpeed;
 
+        // Prevent images from moving outside the viewport
+        if (x < 0) {
+            x = 0;
+            dx *= -1;
+        } else if (x > window.innerWidth - image.width) {
+            x = window.innerWidth - image.width;
+            dx *= -1;
+        }
+
+        if (y < topBannerHeight) {
+            y = topBannerHeight;
+            dy *= -1;
+        } else if (y > containerHeight - bottomBannerHeight - image.height) {
+            y = containerHeight - bottomBannerHeight - image.height;
+            dy *= -1;
+        }
+
         image.dataset.x = x;
         image.dataset.y = y;
         image.dataset.dx = dx;
         image.dataset.dy = dy;
         image.dataset.rotation = rotation;
-
-        if (x < 0 || x > window.innerWidth - image.width) {
-            dx *= -1;
-            image.dataset.dx = dx;
-        }
-        if (y < topBannerHeight || y > containerHeight - bottomBannerHeight - image.height) {
-            dy *= -1;
-            image.dataset.dy = dy;
-        }
 
         image.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
     });
