@@ -1,12 +1,10 @@
 document.getElementById('wordart').addEventListener('click', () => {
-    // Play confetti animation
     confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 }
     });
 
-    // Play the sound
     const audio = new Audio('resources/yipee.mp3');
     audio.volume = 0.1;
     audio.play();
@@ -16,36 +14,38 @@ const images = document.querySelectorAll('.floating-image');
 const container = document.querySelector('.floating-images-container');
 
 function getRandomSpeed() {
-    return (Math.random() - 0.5) * 2; // Random speed between -1 and 1
+    return (Math.random() - 0.5) * 10;
 }
 
 function animate() {
+    const topBannerHeight = document.querySelector('.top-banner').offsetHeight;
+    const bottomBannerHeight = document.querySelector('.bottom-banner').offsetHeight;
+    const containerHeight = window.innerHeight;
+
     images.forEach(image => {
         let x = parseFloat(image.dataset.x || Math.random() * (window.innerWidth - image.width));
-        let y = parseFloat(image.dataset.y || Math.random() * (window.innerHeight - image.height));
+        let y = parseFloat(image.dataset.y || (topBannerHeight + Math.random() * (containerHeight - topBannerHeight - bottomBannerHeight - image.height)));
         let dx = parseFloat(image.dataset.dx || getRandomSpeed());
         let dy = parseFloat(image.dataset.dy || getRandomSpeed());
         let rotation = parseFloat(image.dataset.rotation || 0);
-        const rotationSpeed = 2; // Speed of rotation
+        const rotationSpeed = 2;
 
         x += dx;
         y += dy;
-        rotation += rotationSpeed; // Increment rotation angle
+        rotation += rotationSpeed;
 
-        // Store updated values for the next frame
         image.dataset.x = x;
         image.dataset.y = y;
         image.dataset.dx = dx;
         image.dataset.dy = dy;
         image.dataset.rotation = rotation;
 
-        // Check for collision with container edges
         if (x < 0 || x > window.innerWidth - image.width) {
-            dx *= -1; // Reverse direction
+            dx *= -1;
             image.dataset.dx = dx;
         }
-        if (y < 0 || y > window.innerHeight - image.height) {
-            dy *= -1; // Reverse direction
+        if (y < topBannerHeight || y > containerHeight - bottomBannerHeight - image.height) {
+            dy *= -1;
             image.dataset.dy = dy;
         }
 
