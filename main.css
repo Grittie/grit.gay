@@ -1,3 +1,4 @@
+/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -10,7 +11,7 @@ body {
     background-size: cover;
     background-color: #fff;
     position: relative;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
 .banner {
@@ -88,4 +89,51 @@ body {
     position: absolute;
     width: 100px;
     height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .banner {
+        height: 40px;
+    }
+
+    .peepopride {
+        height: 40px;
+    }
+
+    .monkecorner-container {
+        width: 100px;
+    }
+
+    .wordart {
+        max-width: 70%;
+        padding: 10px;
+    }
+
+    .floating-image {
+        width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 30px;
+    }
+
+    .peepopride {
+        height: 30px;
+    }
+
+    .monkecorner-container {
+        width: 80px;
+    }
+
+    .wordart {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .floating-image {
+        width: 50px;
+    }
 }
