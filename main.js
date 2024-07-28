@@ -1,14 +1,29 @@
-document.getElementById('wordart').addEventListener('click', () => {
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
+document.getElementById('wordart').addEventListener('click', (event) => {
+    const image = event.target;
+    const rect = image.getBoundingClientRect();
+    const x = event.clientX - rect.left; // x position within the element
+    const y = event.clientY - rect.top; // y position within the element
+    const width = rect.width;
+    const height = rect.height;
 
-    const audio = new Audio('resources/yipee.mp3');
-    audio.volume = 0.1;
-    audio.play();
+    if (x >= 0.6 * width && x <= 0.7 * width) {
+        // If click is within 70% - 80% of the image width (green part), change background URL
+        document.getElementById('main-body').style.background = "url('resources/bratgreen.jpg') no-repeat center center fixed";
+        document.getElementById('main-body').style.backgroundSize = 'cover';
+    } else {
+        // Otherwise, trigger confetti and play sound
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+
+        const audio = new Audio('resources/yipee.mp3');
+        audio.volume = 0.1;
+        audio.play();
+    }
 });
+
 
 const images = document.querySelectorAll('.floating-image');
 
