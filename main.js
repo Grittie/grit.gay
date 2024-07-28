@@ -2,14 +2,24 @@ document.getElementById('wordart').addEventListener('click', (event) => {
     const image = event.target;
     const rect = image.getBoundingClientRect();
     const x = event.clientX - rect.left; // x position within the element
-    const y = event.clientY - rect.top; // y position within the element
     const width = rect.width;
-    const height = rect.height;
 
     if (x >= 0.6 * width && x <= 0.7 * width) {
-        // If click is within 70% - 80% of the image width (green part), change background URL
+        // Hide all other elements
+        document.querySelector('.top-banner').style.display = 'none';
+        document.querySelector('.bottom-banner').style.display = 'none';
+        document.querySelector('.monkecorner-container').style.display = 'none';
+        document.querySelector('.content').style.display = 'none';
+        document.querySelector('.floating-images-container').style.display = 'none';
         document.getElementById('main-body').style.background = "url('resources/bratgreen.jpg') no-repeat center center fixed";
         document.getElementById('main-body').style.backgroundSize = 'cover';
+
+        // Show the center image
+        document.getElementById('center-image-container').style.display = 'block';
+
+        const audio = new Audio('resources/brat.mp3');
+        audio.volume = 0.1;
+        audio.play();
     } else {
         // Otherwise, trigger confetti and play sound
         confetti({
@@ -24,6 +34,9 @@ document.getElementById('wordart').addEventListener('click', (event) => {
     }
 });
 
+document.getElementById('center-image').addEventListener('click', () => {
+    location.reload();
+});
 
 const images = document.querySelectorAll('.floating-image');
 
