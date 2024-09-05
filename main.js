@@ -90,4 +90,22 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const monkecorner = document.querySelector('.monkecorner');
+    const overlay = document.getElementById('overlay');
+    const jumpscareAudio = document.getElementById('jumpscare-audio');
+    const overlayText = document.getElementById('overlay-text');
+
+    monkecorner.addEventListener('click', () => {
+        overlay.classList.remove('hidden');
+        jumpscareAudio.play();
+    });
+
+    // Optionally, hide the overlay after some time
+    // setTimeout(() => {
+    //     overlay.classList.add('hidden');
+    // }, 10000); // Hide after 10 seconds, for example
+});
+
 animate();
