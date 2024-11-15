@@ -7,6 +7,7 @@ document.getElementById('wordart').addEventListener('click', (event) => {
     if (x >= 0.6 * width && x <= 0.7 * width) {
         // Hide all other elements
         document.querySelector('.top-banner').style.display = 'none';
+        document.querySelector('.menu').style.display = 'none';
         document.querySelector('.bottom-banner').style.display = 'none';
         document.querySelector('.monkecorner-container').style.display = 'none';
         document.querySelector('.content').style.display = 'none';
@@ -99,13 +100,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     monkecorner.addEventListener('click', () => {
         overlay.classList.remove('hidden');
+        document.querySelector('.menu').style.display = 'none';
         jumpscareAudio.play();
     });
 
     // Optionally, hide the overlay after some time
-    // setTimeout(() => {
-    //     overlay.classList.add('hidden');
-    // }, 10000); // Hide after 10 seconds, for example
+    setTimeout(() => {
+        document.querySelector('.menu').style.display = 'block';
+        overlay.classList.add('hidden');
+    }, 10000); // Hide after 10 seconds, for example
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    menuItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: {
+                    x: item.getBoundingClientRect().left / window.innerWidth,
+                    y: item.getBoundingClientRect().top / window.innerHeight
+                }
+            });
+        });
+
+        item.addEventListener('click', () => {
+            const audio = new Audio('resources/click-sound.mp3');
+            audio.volume = 0.1;
+            audio.play();
+        });
+    });
+});
+
 
 animate();

@@ -8,6 +8,7 @@ html, body {
 }
 
 body {
+    font-family: "Arial Narrow", Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -209,3 +210,96 @@ body {
         color: red;
     }
 }
+
+/* Center the menu */
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787); /* Rainbow pride flag colors */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    width: fit-content;
+    z-index: 10;
+    font-family: inherit; /* Use the font that's applied elsewhere in the project */
+}
+
+/* Center the menu at the top */
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787); /* Rainbow pride flag colors */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 0 auto; /* Remove bottom margin */
+    width: fit-content;
+    z-index: 10;
+    font-family: inherit; /* Use the font that's applied elsewhere in the project */
+    position: fixed; /* Make the menu stick to the top */
+    top: 10px; /* Adjust spacing from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust centering */
+}
+
+/* Center the menu in the middle of the screen */
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787); /* Rainbow pride flag colors */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: fit-content;
+    z-index: 10;
+    font-family: inherit; /* Use the font that's applied elsewhere in the project */
+    position: fixed; /* Position relative to the viewport */
+    top: 50%; /* Vertically center */
+    left: 50%; /* Horizontally center */
+    transform: translate(-50%, -50%); /* Adjust centering */
+}
+
+/* Menu items styling */
+.menu-item {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Active effect */
+.menu-item:active {
+    transform: scale(0.95);
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        padding: 10px;
+        width: 100%; /* Ensure it spans the width on smaller screens */
+        top: 50%; /* Still centered vertically */
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .menu-item {
+        margin: 10px 0;
+        padding: 8px 15px;
+    }
+}
+
